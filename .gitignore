@@ -50,3 +50,11 @@
 
 # Embedded web-server pid file
 /.web-server-pid
+
+# vscode
+.vscode/
+
+# env
+.env.local
+
+token_file.json
