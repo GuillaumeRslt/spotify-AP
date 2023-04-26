@@ -23,7 +23,7 @@ class SpotifyService {
         $this->spotifyApiService = $spotifyApiService;
     }
 
-    public function updateCurrentSongPlaylist(int $maxDate = 2, string $unity = 'month'): array
+    public function updateCurrentSongPlaylist(int $maxDate = 2, string $unity = 'month')
     {
         // recuper titre like avec https://api.spotify.com/v1/me/tracks
         // contient date d'ajout plus id 
@@ -53,7 +53,7 @@ class SpotifyService {
 
         while ($offset < $total) 
         {
-            $resPlaylistItems = $this->spotifyApiService->getPlaylistItems($this->playlistId, $offset = $offset, $limit = $limit);
+            $resPlaylistItems = $this->spotifyApiService->getPlaylistItems($this->playlistId, $offset, $limit);
             $items = array_merge($items, $resPlaylistItems['items']);
             $total = $resPlaylistItems['total'];
             $offset += $limit;
@@ -177,7 +177,7 @@ class SpotifyService {
 
 ### - save date of update
 
-        return ['OK'];
+        return;
     }
 
 }

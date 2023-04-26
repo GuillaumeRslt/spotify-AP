@@ -26,10 +26,10 @@ class PlaylistController extends AbstractController
     public function update_current_song_playlist(): JsonResponse
     {
 
-        $items = $this->spotifyService->updateCurrentSongPlaylist();
+        $this->spotifyService->updateCurrentSongPlaylist();
 
-        return $this->json($items, 200);
+        // return $this->json($items, 200);
 
-        // return new JsonResponse($status=204);
+        return new JsonResponse($data=null, $status=204);
     }
 }
