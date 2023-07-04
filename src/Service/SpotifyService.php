@@ -23,7 +23,7 @@ class SpotifyService {
         $this->spotifyApiService = $spotifyApiService;
     }
 
-    public function updateCurrentSongPlaylist(int $maxDate = 2, string $unity = 'month')
+    public function updateCurrentSongPlaylist(int $maxDate = 1, string $unity = 'month')
     {
         // recuper titre like avec https://api.spotify.com/v1/me/tracks
         // contient date d'ajout plus id 
@@ -66,7 +66,7 @@ class SpotifyService {
         foreach ($items as $item) 
         {
             $addedAt = new \DateTime($item['added_at']);
-            $now = new \DateTime();
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
             $dateInterval = $addedAt->diff($now);
             $diff = intval($dateInterval->format('%m'));
             
@@ -102,8 +102,7 @@ class SpotifyService {
         $total = 1;
         $itemsLiked = array();
 
-        $lastUpdate = new \DateTime();
-        $lastUpdate = $lastUpdate->add(\DateInterval::createFromDateString('-2 month'));
+        $lastUpdate = $this->securityService->getUpdateDate();
 
         $continue = true;
 
@@ -176,6 +175,19 @@ class SpotifyService {
         }
 
 ### - save date of update
+
+        try
+        {
+            $updateDate = new \DateTime("now", new \DateTimeZone('Europe/Paris'));
+            $updateDate = $updateDate->format('c');
+
+            $this->securityService->changeUpdateDate($updateDate);
+        }
+        catch (\Throwable $e)
+        {
+            return [$e->__toString()];
+        }
+        
 
         return;
     }

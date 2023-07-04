@@ -75,8 +75,36 @@ class SecurityService {
 
     public function stockageToken(Array $data)
     {
-        $jsonData = json_encode($data);
+
+        $jsonDataFromFile = file_get_contents($this->pathFileToken);
+        $dataFromFile = json_decode($jsonDataFromFile, true);
+
+        $dataFromFile['access_token'] = $data['access_token'];
+        $dataFromFile['refresh_token'] = $data['refresh_token'];
+
+        $jsonData = json_encode($dataFromFile);
         
         file_put_contents($this->pathFileToken, $jsonData);
     }
+
+    public function changeUpdateDate(string $updateDate) {
+
+        $jsonDataFromFile = file_get_contents($this->pathFileToken);
+        $dataFromFile = json_decode($jsonDataFromFile, true);
+
+        $dataFromFile['update_date'] = $updateDate;
+
+        $jsonData = json_encode($dataFromFile);
+        
+        file_put_contents($this->pathFileToken, $jsonData);
+    }
+
+    public function getUpdateDate(): \DateTime
+    {
+        $jsonDataFromFile = file_get_contents($this->pathFileToken);
+        $dataFromFile = json_decode($jsonDataFromFile, true);
+
+        return new \DateTime($dataFromFile['update_date']);
+    }
 }
+
