@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\SpotifyService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\SpotifyApiService;
 
@@ -23,12 +24,23 @@ class PlaylistController extends AbstractController
     }
 
     #[Route('/current_song_playlist', name: 'update_current_song_playlist', methods: ['PUT'])]
-    public function update_current_song_playlist(): JsonResponse
+    public function update_current_song_playlist(Request $request): JsonResponse
     {
 
-        $this->spotifyService->updateCurrentSongPlaylist();
+        $token = $request->query->get('token');
 
-        // return $this->json($items, 200);
+        if ($token != "28112000") {
+            return $this->json(
+                [
+                'title' => 'Unauthorized',
+                'status' => '401',
+                'message' => 'You\'re not allowed to access this resource.'
+                ],
+                JsonResponse::HTTP_UNAUTHORIZED
+            );
+        }
+
+        $this->spotifyService->updateCurrentSongPlaylist();
 
         return new JsonResponse($data=null, $status=204);
     }

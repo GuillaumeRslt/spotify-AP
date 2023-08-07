@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -103,5 +104,18 @@ class LoginController extends AbstractController
         
         return $this->json("OK", 200);
 
+    }
+
+    #[Route('/', name: 'default')]
+    public function default(): JsonResponse
+    {
+        return $this->json(
+            [
+                "Status" => "404",
+                "Title" => "Not Found",
+                "Message" => "Route not found"
+            ],
+            JsonResponse::HTTP_NOT_FOUND
+        );
     }
 }
