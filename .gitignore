@@ -58,3 +58,4 @@
 .env.local
 
 token_file.json
+deploiement/

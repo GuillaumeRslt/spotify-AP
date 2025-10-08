@@ -18,7 +18,7 @@ class LoginController extends AbstractController
     private HttpClientInterface $client;
     private LoggerInterface $logger;
     private SecurityService $securityService;
-    private string $redirect_uri = "http://localhost:8888/callback";
+    private string $redirect_uri;
     private string $client_id;
     private string $client_secret;
     private string $scope = "user-read-private user-read-email playlist-modify-public user-modify-playback-state user-library-read";
@@ -29,6 +29,7 @@ class LoginController extends AbstractController
         $this->logger = $logger;
         $this->client_id = $_ENV['CLIENT_ID'];
         $this->client_secret = $_ENV['CLIENT_SECRET'];
+        $this->redirect_uri = $_ENV['SPOTIFY_CALLBACK_URI'];
         $this->securityService = $securityService;
     }
 
