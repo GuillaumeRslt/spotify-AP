@@ -5,22 +5,23 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.3",
-            "ref": "da0c8be8157600ad34f10ff0c9cc91232522e047"
+            "ref": "1781ff40d8a17d87cf53f8d4cf0c8346ed2bb461"
         },
         "files": [
             "./bin/console"
         ]
     },
     "symfony/flex": {
-        "version": "2.2",
+        "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "1.0",
-            "ref": "146251ae39e06a95be0fe3d13c807bcf3938b172"
+            "version": "2.4",
+            "ref": "52e9754527a15e2b79d9a610f98185a1fe46622a"
         },
         "files": [
-            "./.env"
+            "./.env",
+            "./.env.dev"
         ]
     },
     "symfony/framework-bundle": {
@@ -43,7 +44,7 @@
         ]
     },
     "symfony/maker-bundle": {
-        "version": "1.48",
+        "version": "1.50",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -52,12 +53,12 @@
         }
     },
     "symfony/monolog-bundle": {
-        "version": "3.8",
+        "version": "3.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "3.7",
-            "ref": "213676c4ec929f046dfde5ea8e97625b81bc0578"
+            "ref": "1b9efb10c54cb51c713a9391c9300ff8bceda459"
         },
         "files": [
             "./config/packages/monolog.yaml"
